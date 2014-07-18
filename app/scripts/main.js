@@ -1,25 +1,39 @@
 $(document).ready(function(){
 
-  var body = document.getElementsByTagName("body")[0],
+  var timer = document.getElementsByClassName("timer")[0],
       timerForm = document.getElementsByClassName("js-timer-form")[0];
 
 
-  timerForm.onsubmit = function(e) {
+  function executeTimer(time) {
+    timer.innerText = time;
+
+    var timerLoop = setInterval(function(){
+      time --;
+
+      timer.innerText = time;
+
+      if (time === -1) {
+        clearInterval(timerLoop);
+
+        showEndMessage();
+      }
+
+    }, 1000);
+  }
+
+
+  function showEndMessage() {
+    timer.innerText = "Timer Complete!"
+  }
+
+
+  timerForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
     var timerFormValue = document.getElementById("time").value;
 
-    body.innerHTML = timerFormValue;
+    executeTimer(timerFormValue);
 
-     var hello = setInterval(function(){
-      timerFormValue--
-      
-      body.innerHTML = timerFormValue;
+  }, false);
 
-      if (timerFormValue === 0) {
-        clearInterval(hello);
-      }      
-
-    }, 1000);
-  }
 });
