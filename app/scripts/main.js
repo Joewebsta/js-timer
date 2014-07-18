@@ -1,8 +1,14 @@
 $(document).ready(function(){
 
-  var timer = document.getElementsByClassName("timer")[0],
+  var timer = document.getElementsByClassName("js-timer")[0],
       timerForm = document.getElementsByClassName("js-timer-form")[0];
 
+
+  function processForm (timerForm) {
+    var timerFormValue = document.getElementById("time").value;
+
+    return timerFormValue;
+  }
 
   function executeTimer(time) {
     timer.innerText = time;
@@ -30,8 +36,7 @@ $(document).ready(function(){
   timerForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    var timerFormValue = document.getElementById("time").value;
-
+    var timerFormValue = processForm(timerForm);
     executeTimer(timerFormValue);
 
   }, false);
