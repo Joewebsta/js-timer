@@ -5,9 +5,25 @@ $(document).ready(function(){
 
 
   function processForm (timerForm) {
-    var timerFormValue = document.getElementById("time").value;
+    var timerFormValue = document.getElementById("time").value;      
+    return timerFormValue;  
+  }
 
-    return timerFormValue;
+  function checkValidNumber(timerFormValue) {
+
+    if (typeof(timerFormValue) === "number") {
+      
+      executeTimer(timerFormValue);  
+    
+    } else {
+      
+      alert("Please enter a number!");
+      clearForm();
+    }
+  }
+
+  function clearForm() {
+    document.getElementById("time").value = "";      
   }
 
   function executeTimer(time) {
@@ -37,7 +53,9 @@ $(document).ready(function(){
     e.preventDefault();
 
     var timerFormValue = processForm(timerForm);
-    executeTimer(timerFormValue);
+    
+    checkValidNumber(timerFormValue);
+    
 
   }, false);
 
