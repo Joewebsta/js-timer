@@ -1,14 +1,71 @@
+body { 
+  background: #323232;
+  text-align: center;
+  color: white;
+}
+
+body, input {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2 { margin: 0; line-height: 1em; }
+h1 { font-size: 42px; margin-top: 50px; }
+h2 { font-size: 20px; }
+
 .timer {
   display: inline-block;
+  margin-top: 200px
+}
 
-  width: 230px;
-  height: 23px;
+.timer-form {
+  display: inline-block;
+}
 
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.timer-upper {
+  border: 1px solid #FFF;
+  display: inline-block;
+  margin-bottom: 20px;
+}
 
-  margin: auto;
+.timer-header { 
+  display: inline-block;
+  padding: 15px;
+  border-right: 1px solid white;
+}
+
+.timer-input { 
+  display: inline-block;
+  background: none; 
+  border: none;
+  color: white;
+  margin: 0;
+  padding: 10px;
+
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.timer-lower {
+  background: #FFF;
+}
+
+.timer-submit {
+  border: none;
+  background: none;
+  color: #323232;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 14px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.timer-output {
+  font-size: 100px;
 }

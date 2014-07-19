@@ -7,18 +7,26 @@
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="stylesheet" href="styles/main.css">
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <script src="../bower_components/modernizr/modernizr.js"></script>
     </head>
     <body>
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <section class="js-timer timer">
-            <form class="js-timer-form">
-                <label for="time" >Time:</label>
-                <input type="text" name="input" id="time" placeholder="Enter Timer Duration">
-                <input type="submit">
+        <h1>JS TIMER</h1>
+        <section class="timer js-timer">
+            <form class="timer-form js-timer-form">
+                <section class="timer-upper">
+                    <h2 class="timer-header">TIME</h2>
+                    <input type="text" name="input" id="time" class="timer-input" maxlength="10"    >
+                </section>
+                <section class="timer-lower">
+                    <input class="timer-submit" type="submit" value="START">
+                </section>
             </form>
+            <section class="timer-output js-timer-output">
+            </section>
         </section>
 
         <script src="../bower_components/jquery/dist/jquery.js"></script>

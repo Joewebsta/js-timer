@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
   var timer = document.getElementsByClassName("js-timer")[0],
-      timerForm = document.getElementsByClassName("js-timer-form")[0];
+      timerForm = document.getElementsByClassName("js-timer-form")[0],
+      output = document.getElementsByClassName("js-timer-output")[0];
 
 
   function processForm (timerForm) {
@@ -9,9 +10,10 @@ $(document).ready(function(){
     return timerFormValue;  
   }
 
+
   function checkValidNumber(timerFormValue) {
 
-    if (isNaN(timerFormValue)) {
+    if (isNaN(timerFormValue) || timerFormValue === "" ) {
       
       alert("Please enter a number!");
       clearForm();
@@ -29,12 +31,13 @@ $(document).ready(function(){
 
 
   function executeTimer(time) {
-    timer.innerText = time;
+    timerForm.innerText = "";
+    output.innerText = time;
 
     var timerLoop = setInterval(function(){
       time --;
 
-      timer.innerText = time;
+      output.innerText = time;
 
       if (time === -1) {
         clearInterval(timerLoop);
@@ -47,7 +50,7 @@ $(document).ready(function(){
 
 
   function showEndMessage() {
-    timer.innerText = "Timer Complete!"
+    output.innerText = "Timer Complete!";
   }
 
 
