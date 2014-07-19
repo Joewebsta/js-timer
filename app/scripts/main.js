@@ -11,20 +11,22 @@ $(document).ready(function(){
 
   function checkValidNumber(timerFormValue) {
 
-    if (typeof(timerFormValue) === "number") {
-      
-      executeTimer(timerFormValue);  
-    
-    } else {
+    if (isNaN(timerFormValue)) {
       
       alert("Please enter a number!");
       clearForm();
+    
+    } else {
+      
+      executeTimer(timerFormValue);  
     }
   }
+
 
   function clearForm() {
     document.getElementById("time").value = "";      
   }
+
 
   function executeTimer(time) {
     timer.innerText = time;
