@@ -16,17 +16,18 @@
         <![endif]-->
         <h1>JS TIMER</h1>
         <section class="timer js-timer">
-            <form class="timer-form js-timer-form">
-                <section class="timer-upper">
-                    <h2 class="timer-header">TIME</h2>
-                    <input type="text" name="input" id="time" class="timer-input" maxlength="10"    >
+            <section class="timer-output js-timer-output">
+                0:00
+            </section>
+            <form class="js-timer-form">
+                <section class="timer-upper clearfix">
+                    <label class="timer-label" for="time">TIME</label>
+                    <input type="text" name="input" id="time" class="timer-input" maxlength="10">
                 </section>
                 <section class="timer-lower">
                     <input class="timer-submit" type="submit" value="START">
                 </section>
             </form>
-            <section class="timer-output js-timer-output">
-            </section>
         </section>
 
         <script src="../bower_components/jquery/dist/jquery.js"></script>
