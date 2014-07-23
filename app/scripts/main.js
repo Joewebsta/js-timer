@@ -4,9 +4,9 @@ $(document).ready(function(){
       timerForm = document.getElementsByClassName("js-timer-form")[0],
       output = document.getElementsByClassName("js-timer-output")[0];
 
-  function centerVertically () {
-    timer.setAttribute("style", "top:" + (window.innerHeight - timer.clientHeight)/2 + "px; " 
-      + "left:" + (window.innerWidth - timer.clientWidth)/2 + "px;");
+  function centerVertically (elem) {
+    elem.setAttribute("style", "top:" + (window.innerHeight - timer.clientHeight)/2 + "px; " 
+      + "left:" + (window.innerWidth - elem.clientWidth)/2 + "px;");
   }
 
   function processForm (timerForm) {
@@ -37,16 +37,19 @@ $(document).ready(function(){
   function executeTimer(time) {
     timerForm.innerText = "";
     output.innerText = time;
+    centerVertically(timer);
 
     var timerLoop = setInterval(function(){
       time --;
 
       output.innerText = time;
+      centerVertically(timer);
 
       if (time === -1) {
         clearInterval(timerLoop);
 
         showEndMessage();
+        centerVertically(timer);
       }
 
     }, 1000);
@@ -54,11 +57,13 @@ $(document).ready(function(){
 
 
   function showEndMessage() {
-    output.innerText = "Timer Complete!";
+    output.innerHTML = "<h2>Timer <br> Complete!</h2>";
   }
 
-  centerVertically();
-  window.addEventListener("resize", centerVertically, false);
+  centerVertically(timer);
+  window.addEventListener("resize", function(){
+    centerVertically(timer);
+  }, false);
 
   timerForm.addEventListener("submit", function(e) {
     e.preventDefault();
