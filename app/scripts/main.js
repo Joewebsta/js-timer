@@ -4,6 +4,10 @@ $(document).ready(function(){
       timerForm = document.getElementsByClassName("js-timer-form")[0],
       output = document.getElementsByClassName("js-timer-output")[0];
 
+  function centerVertically () {
+    timer.setAttribute("style", "top:" + (window.innerHeight - timer.clientHeight)/2 + "px; " 
+      + "left:" + (window.innerWidth - timer.clientWidth)/2 + "px;");
+  }
 
   function processForm (timerForm) {
     var timerFormValue = document.getElementById("time").value;      
@@ -53,6 +57,8 @@ $(document).ready(function(){
     output.innerText = "Timer Complete!";
   }
 
+  centerVertically();
+  window.addEventListener("resize", centerVertically, false);
 
   timerForm.addEventListener("submit", function(e) {
     e.preventDefault();
