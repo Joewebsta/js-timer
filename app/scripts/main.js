@@ -5,93 +5,62 @@ $(document).ready(function(){
       output = document.getElementsByClassName("js-timer-output")[0];
 
 
-  function centerVertically (elem) {
+  function initialize() {
+
+    centerElement(timer);
+
+    window.addEventListener("resize", function(){
     
-    elem.setAttribute("style", "top:" + (window.innerHeight - timer.clientHeight)/2 + "px; " 
-      + "left:" + (window.innerWidth - elem.clientWidth)/2 + "px;");
+      centerElement(timer);
+    }, false);
   }
 
 
-  function processForm (timerForm) {
+  function centerElement(el) {
     
-    var timerFormValue = document.getElementById("time").value;      
-    return timerFormValue;  
+    el.setAttribute("style", "top:" + (window.innerHeight - timer.clientHeight)/2 + "px; " 
+      + "left:" + (window.innerWidth - el.clientWidth)/2 + "px;");
   }
 
 
-  function checkValidNumber(timerFormValue) {
+  function startCountdown(e) {
+    e.preventDefault();
 
-    if (isNaN(timerFormValue) || timerFormValue === "" ) {
+    var time = document.getElementById("time").value;      
+
+    if ( isValidNumber(time) ) {
+
+      // turn 1.5 to 1:30
+
+
+      
+    }
+  }
+
+
+  function isValidNumber(time) {
+    
+    if (isNaN(time) || time === "" ) {
       
       alert("Please enter a number!");
       clearForm();
 
-      return
-    } 
+      return;
+    }
 
-    executeTimer(timerFormValue);  
+    return true;
   }
 
 
   function clearForm() {
-    
+
     document.getElementById("time").value = "";      
   }
 
 
-  function executeTimer(time) {
-    var secondsRemaining = time * 60,
-        min = Math.floor(secondsRemaining / 60),
-        sec = secondsRemaining - (min * 60),
-        message = min + ":" + sec;
-
-    timerForm.innerText = "";
-    output.innerText = min + ":00";
-    centerVertically(timer);
-
-    var timerLoop = setInterval(function(){
-
-
-      secondsRemaining --;
-
-      output.innerText = message;
-      centerVertically(timer);
-
-      if (secondsRemaining === -1) {
-        clearInterval(timerLoop);
-
-        showEndMessage();
-        centerVertically(timer);
-      }
-
-    }, 1000);
-  }
-
-
-  function showEndMessage() {
-    
-    output.innerHTML = "<h2>Timer <br> Complete!</h2>";
-  }
-
-
-
-
-  centerVertically(timer);
-  
-  window.addEventListener("resize", function(){
-    
-    centerVertically(timer);
-  }, false);
-
-
-  timerForm.addEventListener("submit", function(e) {
-    
-    e.preventDefault();
-
-    var timerFormValue = processForm(timerForm);
-    
-    checkValidNumber(timerFormValue);
-    
-  }, false);
+  initialize();
+  timerForm.addEventListener("submit", startCountdown, false);
 
 });
+
+
