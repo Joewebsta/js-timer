@@ -4,6 +4,9 @@ $(document).ready(function(){
       timerForm = document.getElementsByClassName("js-timer-form")[0],
       output = document.getElementsByClassName("js-timer-output")[0];
 
+  var intervalHandle,
+      secondsRemaining;
+
 
   function initialize() {
 
@@ -12,6 +15,7 @@ $(document).ready(function(){
     window.addEventListener("resize", function(){
     
       centerElement(timer);
+
     }, false);
   }
 
@@ -24,16 +28,43 @@ $(document).ready(function(){
 
 
   function startCountdown(e) {
+
     e.preventDefault();
 
     var time = document.getElementById("time").value;      
 
+    secondsRemaining = Number(time) * 60;
+
     if ( isValidNumber(time) ) {
+      intervalHandle = setInterval(function(){
+        tick(time);
+      }, 1000);
+    }
+  }
 
-      // turn 1.5 to 1:30
 
+  function tick(time) {
 
-      
+    var min = Math.floor(secondsRemaining / 60),
+        sec = secondsRemaining - (min * 60);
+
+    if (sec < 10) {
+      sec = "0" + sec;
+    }
+        
+    var message = min + ":" + sec;
+
+    timerForm.innerText = "";
+    output.innerText = message;
+    centerElement(timer);
+
+    secondsRemaining --;
+
+    if (secondsRemaining === -1) {
+      clearInterval(intervalHandle);
+
+      output.innerHTML = "<h2>Timer <br> Complete!</h2>";
+      centerElement(timer);
     }
   }
 
@@ -53,14 +84,12 @@ $(document).ready(function(){
 
 
   function clearForm() {
-
     document.getElementById("time").value = "";      
   }
 
 
   initialize();
   timerForm.addEventListener("submit", startCountdown, false);
-
 });
 
 
